@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch2gether - Watch YouTube Together</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Landing Screen -->
+    <div id="landing-screen" class="screen active">
+        <div class="landing-container">
+            <div class="logo-section">
+                <h1 class="logo">Watch2gether</h1>
+                <p class="tagline">Watch YouTube videos together in perfect sync</p>
+            </div>
+            
+            <div class="action-cards">
+                <div class="card">
+                    <h3>Create Room</h3>
+                    <p>Start a new watch party</p>
+                    <input type="text" id="create-username" placeholder="Your username" maxlength="20">
+                    <input type="text" id="youtube-url" placeholder="YouTube video URL (optional)">
+                    <button id="create-room-btn" class="btn-primary">Create Room</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Join Room</h3>
+                    <p>Join an existing watch party</p>
+                    <input type="text" id="join-username" placeholder="Your username" maxlength="20">
+                    <input type="text" id="room-id" placeholder="Room ID">
+                    <button id="join-room-btn" class="btn-primary">Join Room</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Watch Room Screen -->
+    <div id="watch-screen" class="screen">
+        <div class="room-header">
+            <div class="room-info">
+                <h2 id="room-title">Room: <span id="current-room-id"></span></h2>
+                <div class="user-count">
+                    <span id="user-count">0</span> users online
+                </div>
+            </div>
+            <div class="room-controls">
+                <input type="text" id="video-url-input" placeholder="Paste YouTube URL to change video">
+                <button id="change-video-btn" class="btn-secondary">Change Video</button>
+                <button id="leave-room-btn" class="btn-destructive">Leave Room</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="video-section">
+                <div id="video-container">
+                    <div id="youtube-player"></div>
+                    <div id="video-placeholder" class="video-placeholder">
+                        <div class="placeholder-content">
+                            <h3>No video loaded</h3>
+                            <p>Paste a YouTube URL above to start watching together</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="video-info">
+                    <h3 id="video-title">Select a video to get started</h3>
+                    <div class="sync-status">
+                        <span id="sync-indicator" class="sync-indicator">🔄 Synced</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-section">
+                <div class="chat-header">
+                    <h3>Chat</h3>
+                    <div class="online-users">
+                        <div id="users-list"></div>
+                    </div>
+                </div>
+                
+                <div id="chat-messages" class="chat-messages"></div>
+                
+                <div class="chat-input-container">
+                    <input type="text" id="chat-input" placeholder="Type a message..." maxlength="200">
+                    <button id="send-message-btn" class="btn-primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="screen">
+        <div class="loading-container">
+            <div class="spinner"></div>
+            <p>Connecting to room...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="client.js"></script>
+</body>
+</html>
